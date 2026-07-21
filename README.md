@@ -17,9 +17,9 @@ From LEFT to RIGHT we'll call them: *P0-P4*
 example: if we had DF012; P0 == D, P4 == 2
 
 So first some *TERMS* for the formula<br>
-N = Desired number of Ninjas<br>
-C = the Crystal Bitmap we want ot use<br>
-H = the desired Health count we want (4, 6, 8, 10, 12 only)<br>
+N = Ninja Bitmap we want to use<br>
+C = Crystal Bitmap we want to use<br>
+H = Health count we want (4, 6, 8, 10, 12 only)<br>
 K = the encryption "key"
 
 P0 = (N - (2 * K)) and 0xF<br>
