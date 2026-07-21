@@ -17,9 +17,9 @@ From LEFT to RIGHT we'll call them: *P0-P4*
 example: if we had DF012; P0 == D, P4 == 2
 
 So first some *TERMS* for the formula<br>
-N = Ninja Bitmap we want to use<br>
-C = Crystal Bitmap we want to use<br>
-H = Health count we want (4, 6, 8, 10, 12 only)<br>
+N = Desired number of Ninjas<br>
+C = the Crystal Bitmap we want ot use<br>
+H = the desired Health count we want (4, 6, 8, 10, 12 only)<br>
 K = the encryption "key"
 
 P0 = (N - (2 * K)) and 0xF<br>
@@ -63,3 +63,15 @@ _DATA_2346A_ is the mapping for the digits to something but its absolutely visua
 _LABEL_1363_ Looks like it's where do do the PW logic. When I set the READ BP on my range above, we jump to here and do stuff. Nice!
 AI debugged the routine, I verified it against my known logic and voila! an algorithm was uncovered.
 ChatGPT wrote the python script for me, Claude converted to a simple JS function and created a form for me.
+
+
+
+# Bonus RAM addresses for GG Shinobi 1
+You can't save a password here but you can enter a CHEAT
+| RAM | Values | Explaination |
+| --- | ------ | ------------ |
+| D20B | 0-A | current health  |
+| D20C | 0-A | max health      |
+| D21C | 0-F | Ninja available (0f is all)|
+| D21D | 0-9 |Players (+1 count, so 06 == 5) |
+| D21E | 0-9 | Ninja Magic |
