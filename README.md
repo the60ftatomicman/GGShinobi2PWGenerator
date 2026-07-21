@@ -10,6 +10,39 @@ password_gg_shinobi.html - a simple HTML form with JS generating the output.
 
 password_gg_shinobi.py - the same method but in a python script.
 
+# The Password Algorithm
+So you have *5* characters who can have a value *0-F*.
+From LEFT to RIGHT we'll call them: *P0-P4*
+
+example: if we had DF012; P0 == D, P4 == 2
+
+So first some *TERMS* for the formula<br>
+N = Desired number of Ninjas<br>
+C = the Crystal Bitmap we want ot use<br>
+H = the desired Health count we want (4, 6, 8, 10, 12 only)<br>
+K = the encryption "key"
+
+P0 = (N - (2 * K)) and 0xF<br>
+P1 = C<br>
+P2 = (H + K) and 0xF<br>
+P3 = (N + C + H) and 0xF<br>
+P4 = K
+
+## Checksums
+We need to ensure that:<br>
+
+P4 / K != 0<br>
+
+P3 == (<br>
+     ((P2 - P4) & 0x0F)<br>
+    + P1<br>
+    + ((P0 + 2 * P4) & 0x0F)<br>
+) & 0x0F<br>
+
+
+## Other Oddities
+So the game will sometimes provide you with different passwords like 1F6D7. which is the same as "full everything" DFD01. Why? Not certain! In testing it made no difference.
+
 ## How was this made
 it is 2026 so you can imagine: it was an agentic (AI) effort with the stock ChatGPT  model and Claude for the html.
 First I found which RAM addresses mapped to which game variables.
